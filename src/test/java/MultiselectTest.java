@@ -44,7 +44,7 @@ public class MultiselectTest {
         List<WebElement> selectedOptions = selectObject.getAllSelectedOptions();
         Stream<WebElement> expected = selectedOptions.stream();
         result = expected.allMatch(x -> x.getText().contains("Texas") || x.getText().contains("Washington")
-                                                                      || x.getText().contains("New Jersey"));
+                || x.getText().contains("New Jersey"));
 
         assertTrue(result, "Not all elements or incorrect elements were selected failed at point");
     }
