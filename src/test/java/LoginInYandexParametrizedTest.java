@@ -42,7 +42,7 @@ public class LoginInYandexParametrizedTest {
     @ParameterizedTest
     @Tag("yandex_login_parametrized_test")
     @CsvSource({"firstnamelastname1989, pTKJctHpbaj@t7M",
-            "test1test1account, 111111111Q", "test2testaccount, 111111qwe"})
+            "testaccount1111111, 111111qwertyu", "testaccount22222222, 111111qwertyu"})
     void yandexLoginParasTest(String username, String password) {
         driver.get("https://mail.yandex.com/");
         WebElement enterButton = driver.findElement
