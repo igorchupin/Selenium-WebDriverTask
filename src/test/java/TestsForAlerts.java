@@ -1,23 +1,23 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.NoSuchElementException;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestsForAlerts {
     private static WebDriver driver;
     private static WebDriverWait wait;
-    private String keysForSend = "Hello!!!";
+    private final String keysForSend = "Hello!!!";
 
 
     @BeforeAll
@@ -45,9 +45,9 @@ public class TestsForAlerts {
         alert.accept();
 
         assertAll("Results",
-        ()-> assertEquals("You pressed OK!", driver.findElement(By.id("confirm-demo")).getText(),
-                                                                                    "Alert was not accepted"),
-                ()-> assertEquals("Press a button!", alertText, "Alert has incorrect text")
+                () -> assertEquals("You pressed OK!", driver.findElement(By.id("confirm-demo")).getText(),
+                        "Alert was not accepted"),
+                () -> assertEquals("Press a button!", alertText, "Alert has incorrect text")
         );
     }
 
@@ -61,7 +61,7 @@ public class TestsForAlerts {
         alert.dismiss();
 
         assertEquals("You pressed Cancel!", driver.findElement(By.id("confirm-demo")).getText(),
-                                                                                    "Alert was not canceled");
+                "Alert was not canceled");
     }
 
     @Test
@@ -74,12 +74,12 @@ public class TestsForAlerts {
         String alertText = alert.getText();
         alert.sendKeys(keysForSend);
         alert.accept();
-        String expectedResult = String.format ("You have entered '%s' !", keysForSend);
+        String expectedResult = String.format("You have entered '%s' !", keysForSend);
 
         assertAll("Results",
-                ()-> assertEquals(expectedResult, driver.findElement(By.id("prompt-demo")).getText(),
+                () -> assertEquals(expectedResult, driver.findElement(By.id("prompt-demo")).getText(),
                         "Incorrect keys were sent!"),
-                ()-> assertEquals("Please enter your name", alertText , "Alert has incorrect text")
+                () -> assertEquals("Please enter your name", alertText, "Alert has incorrect text")
         );
     }
 
