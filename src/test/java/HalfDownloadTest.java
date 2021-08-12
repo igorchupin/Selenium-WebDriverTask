@@ -41,15 +41,14 @@ public class HalfDownloadTest {
         WebElement downloadButton = driver.findElement(By.id("cricle-btn"));
         downloadButton.click();
         wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                WebElement loadingPercent = driver.findElement(By.xpath("//div[@class='percenttext']"));
-                stringPercent = loadingPercent.getText();
-                percent = Integer.valueOf(stringPercent.substring(0, stringPercent.length() - 1));
-                if (percent >= 50) return true;
-                else return false;
-            }
-        }
-      );
+                       public Boolean apply(WebDriver driver) {
+                           WebElement loadingPercent = driver.findElement(By.xpath("//div[@class='percenttext']"));
+                           stringPercent = loadingPercent.getText();
+                           percent = Integer.valueOf(stringPercent.substring(0, stringPercent.length() - 1));
+                           return percent >= 50;
+                       }
+                   }
+        );
         driver.navigate().refresh();
     }
 }
